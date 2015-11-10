@@ -1,0 +1,21 @@
+sudo: 
+    - required
+
+language: 
+    - ruby
+
+services: 
+    - docker
+
+rvm:
+    - 2.1
+
+install: 
+    - gem install jekyll
+
+script: 
+    - jekyll build
+    - docker build -t dancat/bangtail .
+    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    - docker push dancat/bangtail
+
