@@ -14,7 +14,7 @@ install:
     - gem install jekyll
 
 script: 
-    - jekyll build
+    - jekyll build -d jekyll/_site -s jekyll/
     - docker build -t dancat/bangtail .
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
     - docker push dancat/bangtail
